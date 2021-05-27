@@ -29,7 +29,7 @@ Convert
 node index.js convert --md ./README.md --html ./README.html
 ```
 
-Where --md=PATH_TO_MARKDOWN_FILE --html=PATH_TO_HTML_FILE
+Where --md=PATH-TO-MARKDOWN-FILE --html=PATH-TO-HTML-FILE
 
 ## Contributor
 
