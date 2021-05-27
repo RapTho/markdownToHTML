@@ -17,7 +17,7 @@ const isValidPath = (mdPath, htmlPath) => {
   } catch (err) {
     console.log(
       error(
-        "No markdown file found or invalid --html path. Please provide valid paths --md and --html"
+        "No markdown file found or invalid --html path. Please provide valid paths for --md and --html"
       )
     );
     return false;
@@ -43,7 +43,7 @@ const convertMDtoHTML = () => {
   }
   console.log(
     success(
-      `Your HTML file was converted and saved to ${path.resolve(htmlPath)}`
+      `Success! The converted HTML file was saved to ${path.resolve(htmlPath)}`
     )
   );
 };
