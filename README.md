@@ -10,9 +10,16 @@ Find the download link here: [https://nodejs.org/en/download/](https://nodejs.or
 
 ## How to use
 
+Clone the repository or download the ZIP from Github.
+
+```
+git clone https://github.com/RapTho/markdownToHTML.git
+```
+
 Install dependencies
 
 ```
+cd markdownToHTML
 npm install
 ```
 
