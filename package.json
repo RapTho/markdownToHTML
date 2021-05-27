@@ -1,5 +1,5 @@
 {
-  "name": "markdowntohtml",
+  "name": "@raptho/mdtohtml",
   "version": "1.0.0",
   "description": "A converter for *.md to *.html files used via CLI",
   "main": "index.js",
