@@ -1,6 +1,6 @@
 # Markdown to HTML converter
 
-This script converts markdown files to html files.
+This script converts [markdown files](https://www.markdownguide.org/getting-started/) to HTML files.
 
 ## How to use
 
@@ -16,7 +16,7 @@ Convert
 node index.js convert --md ./README.md --html ./README.html
 ```
 
-Where --md=PATH-TO-MARKDOWN-FILE --html=PATH-TO-HTML-FILE
+Where --md=PATH_TO_MARKDOWN_FILE --html=PATH_TO_HTML_FILE
 
 ## Contributor
 
