@@ -9,16 +9,20 @@ const converter = new showdown.Converter();
 const error = chalk.bold.red;
 const success = chalk.bold.green;
 
-const isValidPath = (path) => {
+const isValidPath = (mdPath, htmlPath) => {
   let pathStats = {};
   try {
-    pathStats = fs.statSync(path);
+    pathStats = fs.statSync(mdPath);
+    if (typeof htmlPath !== "string") throw Error();
   } catch (err) {
     console.log(
-      error("No markdown file found. Please provide a valid path for --md!")
+      error(
+        "No markdown file found or invalid --html path. Please provide valid paths --md and --html"
+      )
     );
     return false;
   }
+
   return pathStats.isFile();
 };
 
@@ -26,8 +30,8 @@ const convertMDtoHTML = () => {
   let markdownPath = argv.md;
   let htmlPath = argv.html;
 
-  // Check that --md has a valid path
-  if (!isValidPath(markdownPath)) return;
+  // Check that --md has a valid path and that --html is a string
+  if (!isValidPath(markdownPath, htmlPath)) return;
 
   try {
     let md = fs.readFileSync(markdownPath).toString();
@@ -44,10 +48,26 @@ const convertMDtoHTML = () => {
   );
 };
 
+// The default command to catch all other than convert
+yargs.command({
+  command: "*",
+  builder: {
+    md: {
+      describe: "Path to the markdown file e.g. ./README.md",
+      demandOption: true,
+      type: "string",
+    },
+    html: {
+      describe: "Path to the output html file e.g. ./README.html",
+      demandOption: true,
+      type: "string",
+    },
+  },
+});
+
 yargs.command({
   command: "convert",
-  describe:
-    "This command converts markdown files to html files.\nCommand structure: node index.js convert --md <PATH-TO-MARKDOWN-FILE> --html <PATH-TO-HTML-FILE>",
+  describe: "--md PATH_TO_MARKDOWN_FILE --html PATH_TO_HTML_FILE",
   builder: {
     md: {
       describe: "Path to the markdown file e.g. ./README.md",
@@ -62,3 +82,5 @@ yargs.command({
   },
   handler: convertMDtoHTML(),
 });
+
+yargs.parse();
