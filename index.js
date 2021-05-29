@@ -11,6 +11,7 @@ const success = chalk.bold.green;
 
 const isValidPath = (mdPath, htmlPath) => {
   let pathStats = {};
+
   try {
     pathStats = fs.statSync(mdPath);
     if (typeof htmlPath !== "string") throw Error();
@@ -26,10 +27,7 @@ const isValidPath = (mdPath, htmlPath) => {
   return pathStats.isFile();
 };
 
-const convertMDtoHTML = () => {
-  let markdownPath = argv.md;
-  let htmlPath = argv.html;
-
+const convertMDtoHTML = (markdownPath, htmlPath) => {
   // Check that --md has a valid path and that --html is a string
   if (!isValidPath(markdownPath, htmlPath)) return;
 
@@ -80,7 +78,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: convertMDtoHTML(),
+  handler: convertMDtoHTML(argv.md, argv.html),
 });
 
 yargs.parse();
