@@ -14,7 +14,7 @@ const isValidPath = (mdPath, htmlPath) => {
 
   try {
     pathStats = fs.statSync(mdPath);
-    if (typeof htmlPath !== "string") throw Error();
+    if (typeof htmlPath !== "string") throw new Error();
   } catch (err) {
     console.log(
       error(
